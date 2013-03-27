@@ -94,7 +94,7 @@ class OAuth2 {
 				if ($token->hasExpired()) {
 					return Event::until("oauth2.error.json",array("","400:expired_token"));
 				}
-				switch (Config::get("oauth2-server::oauth2.mode","flexible")) {
+				switch (Config::get("oauth2-sp::oauth2.mode","flexible")) {
 					case "strict":
 						$tokenScopes = 0;
 						$totalScopes = 0;
@@ -156,7 +156,7 @@ class OAuth2 {
 				$oldToken = OAuth2\Models\Token::where("refresh","=",$token->code)->first();
 				
 				// Increase the expiry of the old token
-				switch (Config::get("oauth2-server::oauth2.mode","flexible")) {
+				switch (Config::get("oauth2-sp::oauth2.mode","flexible")) {
 					case "strict":
 						$tokenScopes = 0;
 						$totalScopes = 0;
@@ -325,7 +325,7 @@ class OAuth2 {
 			$scopeName = urldecode($v);
 			$s = OAuth2\Models\Scope::where("name","=",$scopeName)->first();
 			if (!$s) {
-				if (Config::get("oauth2-server::oauth2.new_scope","ignore") == "create") {
+				if (Config::get("oauth2-sp::oauth2.new_scope","ignore") == "create") {
 					$s = new OAuth2\Models\Scope();
 					$s->name = $scopeName;
 					$s->save();
