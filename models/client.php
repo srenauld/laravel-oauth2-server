@@ -1,0 +1,1 @@
+<?phpnamespace SebRenauld\OAuth2\Models;use Eloquent;class Client extends Eloquent {	public static $table = "oa_clients";	public function scopes() {		return $this->has_many_and_belongs_to("SebRenauld\\OAuth2\\Models\\Scope","oa_client_scope");	}}
