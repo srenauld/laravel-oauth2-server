@@ -31,12 +31,12 @@ Usage
 Installation
 ----------------------
 Install it by using artisan (`php artisan bundle:install oauth2-sp`) or by manually copying the contents of this repository into `bundles/`.
-This bundle requires tables, and a migration is provided. Run `php artisan migrate oauth2-server` to create the tables - the following will be created: `oa_clients`, `oa_tokens`, `oa_scopes` along with client->scope, token->scope associative tables.
+This bundle requires tables, and a migration is provided. Run `php artisan migrate oauth2-sp` to create the tables - the following will be created: `oa_clients`, `oa_tokens`, `oa_scopes` along with client->scope, token->scope associative tables.
 
 Loading the bundle
 ----------------------
 Add the following to your bundles.php file:
-   ```"oauth2-server" => array("auto" => true, "handles" => "oa"),```
+   ```"oauth2-sp" => array("auto" => true, "handles" => "oa"),```
 `auto` will auto-start the bundle on every request, allowing you to gain access to the filter defined in `start.php` along with the autoloader definitions in it. `handles` will allow you to define a bundle sub-directory mapping (in my case /oa/) for your endpoint config. The endpoints token and authorized will be present in it.
 
 Once this is done, you're all done!
