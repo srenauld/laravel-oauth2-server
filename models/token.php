@@ -10,7 +10,7 @@ class Token extends Eloquent {
 		$r->code = static::generateEntropy();
 		$r->type = 3;
 		$r->client_id = $clientID;
-		$r->expiry = time()+Config::get("oauth2-server::oauth2.auth_lifetime");
+		$r->expiry = time()+Config::get("oauth2-sp::oauth2.auth_lifetime");
 		$r->save();
 		return $r;
 	}
@@ -22,7 +22,7 @@ class Token extends Eloquent {
 		$refresh->code = static::generateEntropy();
 		$refresh->type = 2;
 		$refresh->client_id = $clientID;
-		$refresh->expiry = time()+Config::get("oauth2-server::oauth2.access_lifetime");
+		$refresh->expiry = time()+Config::get("oauth2-sp::oauth2.access_lifetime");
 		$refresh->save();
 		
 		$r = new Token();
@@ -30,7 +30,7 @@ class Token extends Eloquent {
 		$r->type = 1;
 		$r->client_id = $clientID;
 		$r->refresh = $refresh->code;
-		$r->expiry = time()+Config::get("oauth2-server::oauth2.access_lifetime");
+		$r->expiry = time()+Config::get("oauth2-sp::oauth2.access_lifetime");
 		$r->save();
 		return $r;
 	}
