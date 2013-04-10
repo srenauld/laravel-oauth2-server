@@ -220,8 +220,13 @@ class OAuth2 {
 		foreach ($requestedScopes as $rS) {
 			$t->scopes()->attach($rS->id);
 		}
+		if (Config::get("oauth2-sp::oauth2.always_redirect")) {
+			// @pratikshya's feature request from forums.laravel.io
+			// Set the config string to true to always redirect rather than to print
+			// This is contrary to RFC, so disabled by default!
+			return Event::until("oauth2.redirect: token",array($params['redirect_uri'],$params, $t));
+		}
 		return $t->printToken();
-// return Event::until("oauth2.redirect: access",array($params['redirect_uri'],$t));
 	}
 	private function getAuthorizationHeader() {
 		if (array_key_exists("HTTP_AUTHORIZATION", $_SERVER))
