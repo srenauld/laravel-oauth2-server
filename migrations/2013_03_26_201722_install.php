@@ -21,7 +21,7 @@ class Oauth2_Sp_Install {
 			$table->unique(array("type","code"));
 			$table->index("refresh");
 			$table->index("client_id");
-			
+			$table->index("code");
 			$table->foreign("refresh")->references("code")->on("oa_tokens")->on_update("cascade")->on_delete("set null");
 		});
 		Schema::create("oa_clients", function($table) {
