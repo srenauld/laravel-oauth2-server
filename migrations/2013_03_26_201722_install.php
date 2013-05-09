@@ -1,6 +1,6 @@
 <?php
 
-class Oauth2_Server_Install {
+class Oauth2_Sp_Install {
 
 	/**
 	 * Make changes to the database.
