@@ -22,7 +22,7 @@ class Oauth2_Sp_Install {
 			$table->index("refresh");
 			$table->index("client_id");
 			$table->index("code");
-			$table->foreign("refresh")->references("code")->on("oa_tokens")->on_update("cascade")->on_delete("set null");
+			$table->foreign("refresh")->references("code")->on("oa_tokens")->on_update("cascade");
 		});
 		Schema::create("oa_clients", function($table) {
 			$table->increments("id")->unsigned();
